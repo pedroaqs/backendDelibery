@@ -22,6 +22,7 @@ use App\Http\Controllers\PromocionController;
 use App\Http\Controllers\ReportePedidoController;
 use App\Http\Resources\Auth\UserForMovile;
 use Illuminate\Http\Response;
+use App\Http\Controllers\PruebaDireccionesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,3 +107,8 @@ Route::post('pedidosreload', function () {
     Route::resource('fotosproducto', FotoproductoController::class);
 
 });
+
+//Route::get('direcciones', [PruebaDireccionesController::class, 'prueba']);
+
+Route::post('direcciones/{user_id}', [PruebaDireccionesController::class, 'prueba']);
+Route::get('/users/{user_id}/direcciones', [PruebaDireccionesController::class, 'listarDirecciones']);

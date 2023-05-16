@@ -8,6 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -71,5 +72,15 @@ class User extends Authenticatable
     public function ultimopedido(): HasOne
     {
         return $this->hasOne(Pedidos::class, 'repartidor_id', 'id')->latest();
+    }
+    
+    /**
+     * Get all of the pedidos for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function pedidos(): HasMany
+    {
+        return $this->hasMany(Pedido::class, 'cliente_id', 'id');
     }
 }

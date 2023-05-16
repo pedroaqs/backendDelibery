@@ -14,6 +14,7 @@ use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\UsuarioController;
 use App\Http\Controllers\CostoDistanciaController;
+use App\Http\Controllers\DetallepedidoController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ProductosController;
@@ -91,6 +92,14 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('reportes/pedidos', [ReportePedidoController::class, 'index']);
     Route::get('reportes/exportar/pedidos', [ReportePedidoController::class, 'exportar']);
 
+
+
+    
+    Route::get('/pedidosLista', [DetallepedidoController::class, 'listaPedidos']);
+
+
+
+
 });
 
 // Web soquet
@@ -112,3 +121,4 @@ Route::post('pedidosreload', function () {
 
 Route::post('direcciones/{user_id}', [PruebaDireccionesController::class, 'prueba']);
 Route::get('/users/{user_id}/direcciones', [PruebaDireccionesController::class, 'listarDirecciones']);
+
